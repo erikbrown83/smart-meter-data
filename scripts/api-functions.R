@@ -16,7 +16,7 @@ get_octopus_api <- function(url, key){
 #function for updating and saving a file containing smart meter consumption data:
 
 get_consumption_data <- function(consumption_url = "https://api.octopus.energy/v1/electricity-meter-points/1800051384103/meters/20M0071263/consumption/",
-                                 api_key = "sk_live_bWsFqhIOy1jozxad0bRsrART",
+                                 api_key = keyring::key_get("smart-meter", "octopus"),
                                  output_path = here::here("data", "consumption-data.csv"),
                                  meter_install_date = "2022-05-24"){
   
@@ -77,7 +77,7 @@ get_consumption_data <- function(consumption_url = "https://api.octopus.energy/v
 get_tariff <- function(url_standing_charge = "https://api.octopus.energy/v1/products/VAR-19-04-12/electricity-tariffs/E-2R-VAR-19-04-12-N/standing-charges/",
                        url_night_unit = "https://api.octopus.energy/v1/products/VAR-19-04-12/electricity-tariffs/E-2R-VAR-19-04-12-N/night-unit-rates/",
                        url_day_unit = "https://api.octopus.energy/v1/products/VAR-19-04-12/electricity-tariffs/E-2R-VAR-19-04-12-N/day-unit-rates/",
-                       api_key = "sk_live_bWsFqhIOy1jozxad0bRsrART"){
+                       api_key = keyring::key_get("smart-meter", "octopus")){
   
   require(tidyverse)
   require(lubridate)
